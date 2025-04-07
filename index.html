@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Minimalist Clock</title>
+  <style>
+    body {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    .clock-container {
+      position: relative;
+      width: 50vmin;
+      height: 50vmin;
+    }
+    .circle {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+    .bottom-circle {
+      width: 50vmin;
+      height: 50vmin;
+      background-color: #4169E1; /* Soft rich blue */
+      opacity: 1;
+    }
+    .top-circle {
+      width: calc(50vmin - 10px);
+      height: calc(50vmin - 10px);
+      background-color: #E6E6FA; /* Lavender */
+      opacity: 0.8;
+    }
+    .time {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 5vmin;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="clock-container">
+    <div class="circle bottom-circle"></div>
+    <div class="circle top-circle"></div>
+    <div class="time" id="clock-time">00:00:00</div>
+  </div>
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock-time').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+    setInterval(updateTime, 1000);
+    updateTime(); // Initial call to display time immediately
+  </script>
+</body>
+</html>
